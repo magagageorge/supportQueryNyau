@@ -1,0 +1,43 @@
+<app-customer-layout>
+    <div class="container">
+        <div class="card col-md-12">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6"></div>
+                    <div class="col-6">
+                        <a routerLink="/customer/tickets/create" class="btn btn-sm btn-primary pull-right"><span
+                                class="fa fa-plus-o">Add New</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body col-md-12">
+                <table *ngIf="ticketsService.TICKETS_LIST.length" class="table table-responsive table-striped">
+                    <thead>
+                        <td>ID</td>
+                        <td>Title</td>
+                        <td>Status</td>
+                        <td colspan="2">Actions</td>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let ticket of ticketsService.TICKETS_LIST">
+                            <tr>
+                                <td>{{ticket.id}}</td>
+                                <td><a routerLink="/customer/tickets/ticket-details/{{ticket.id}}" (click) ="ticketsService.SetActiveTicket(ticket.id);">{{ticket.title}}</a></td>
+                                <td>{{ticket.status}}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" routerLink="/customer/tickets/edit/{{ticket.id}}">
+                                        <span class="fa fa-pencil"></span></a>
+                                    <span class="btn btn-sm btn-danger"
+                                        (click)="ticketsService.confirmDeleteTicket(ticket)"><span
+                                            class="fa fa-trash"></span></span>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</app-customer-layout>

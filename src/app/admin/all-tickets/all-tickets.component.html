@@ -1,0 +1,16 @@
+<app-admin-layout>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5">
+                <app-ticket-list></app-ticket-list>
+            </div>
+            <div  class="col-md-7">
+              <app-ticket-details></app-ticket-details>
+                <div>
+                <app-ticket-description [activeTicket]="ticketService.activeTicket"></app-ticket-description>
+                </div>
+            </div>
+          </div>
+        </div>
+</app-admin-layout>
+    

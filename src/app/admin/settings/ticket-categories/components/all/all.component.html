@@ -1,0 +1,39 @@
+<app-admin-layout>
+    <div class="container">
+       <div class="card">
+           <div class="card-header">
+                  <div class="row">
+                      <div class="col-6"></div>
+                      <div class="col-6">
+                          <a  routerLink="/admin/settings/ticket-categories/create" class="btn btn-sm btn-primary pull-right"><span class="fa fa-plus-o"></span>Add New</a>
+                      </div>
+                  </div>
+           </div>
+           <div class="card-body">
+                <table *ngIf="settingsService.TICKET_CATEGORIES.length" class="table table-responsive table-striped">
+                        <thead>
+                            <td>ID</td>
+                            <td>name</td>
+                            <td colspan="2">Actions</td>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let category of settingsService.TICKET_CATEGORIES">
+                                <tr>
+                                    <td>{{category.id}}</td>
+                                    <td>{{category.name}}</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary"
+                                            routerLink="/admin/settings/ticket-categories/edit/{{category.id}}"> <span
+                                                class="fa fa-pencil"></span>Edit</a>
+                                        <span class="btn btn-sm btn-danger"
+                                            (click)="settingsService.confirmDeleteTicketCat(category)"><span
+                                                class="fa fa-trash"></span> Delete</span>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+           </div>
+       </div>
+    </div>
+</app-admin-layout>

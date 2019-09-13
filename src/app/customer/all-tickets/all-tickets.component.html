@@ -1,0 +1,18 @@
+<app-customer-layout>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-5 border-right"  >
+            <app-ticket-list></app-ticket-list>
+            <a routerLink="/customer/new-complaint" class="btn btn-outline-primary btn-sm fa fa-plus" role="button" aria-pressed="true"> new complaint </a>
+        </div>
+        <div  class="col-md-7">
+          <app-ticket-details></app-ticket-details>
+            <div class="d-block w-100">
+            <app-ticket-description [activeTicket]="ticketService.activeTicket"></app-ticket-description>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-customer-layout>

@@ -1,0 +1,39 @@
+
+<div *ngIf="activeTicket">
+<div class="container"> 
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+              <th scope="col-4">Ticket No</th>
+              <td scope="col-8">{{activeTicket.ticketNo}}</td>
+            </tr>
+          </tbody>
+        <tbody>
+          <tr>
+            <th scope="col-4">title </th>
+            <td scope="col-8">{{activeTicket.title}}</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <th scope="col-4">Description </th>
+            <td scope="col-8">
+                <input [(ngModel)]="activeTicket.description" placeholder="description"/>
+            </td>
+          </tr>
+        </tbody>
+          <tbody>
+          <tr>
+            <th scope="col-4">Status </th>
+            <td scope="col-8">
+                <input [(ngModel)]="activeTicket.Status" placeholder="Status"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div>
+      <button class="btn btn-primary btn-sm float-right"  >Save</button>
+      <button class="btn btn-primary btn-sm float-right" >Cancel</button>
+      </div>
+    </div>

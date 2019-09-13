@@ -1,0 +1,21 @@
+      <h4>Ticket List</h4>
+      <table class="table table-hover table-bordered">
+        <tbody>
+          <tr *ngFor = "let ticket of ticketService.TICKET_LIST">
+            <td class="col-md-12"> 
+              <a routerLink = "../all-tickets/{{ticket.ticketNo}}" (click) ="ticketService.SetActiveTicket(ticket.ticketNo);" >
+                <span>Ticket No: </span> {{ticket.ticketNo}}
+              </a>
+              <div>
+              {{ticket.title}}
+              <a routerLink="../edit-ticket/{{ticket.ticketNo}}" (click)="ticketService.SetActiveTicket(ticket.ticketNo)">
+              <button class="btn btn-sm btn-primary float-right"><span class="fa fa-pencil"></span></button>
+              </a>
+            </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+

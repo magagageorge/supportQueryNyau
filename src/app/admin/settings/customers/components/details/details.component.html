@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <h2> {{activeCustomer.name}} Details </h2>
+                </div>
+                <div class="col-6 pull-right">
+                    <a class="btn btn-sm btn-primary" routerLink="/admin/settings/customers/edit/{{activeCustomer.id}}">
+                        <span class="fa fa-pencil"></span>Edit</a>
+                    <span class="btn btn-sm btn-danger"
+                        (click)="settingsService.confirmDeleteCustomer(activeCustomer)"><span
+                            class="fa fa-trash"></span> Delete</span> 
+                         </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div *ngIf="activeCustomer">
+                <div class="container">
+                    <table class="table table-bordered tabe-striped col-md-12">
+                        <tbody>
+                            <tr>
+                                <th>Customer Id</th>
+                                <td>{{activeCustomer.id}}</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <td>{{activeCustomer.name}}</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{activeCustomer.email}}</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>Address </th>
+                                <td>{{activeCustomer.address}}</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>Mobile </th>
+                                <td>{{activeCustomer.mobile}}</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>Phone </th>
+                                <td>{{activeCustomer.phone}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- <form>
+                            <div class="form-group">
+                                <label>Name: 
+                                <div >{{activeCustomer.name}}</div>
+                            </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Address:
+                                <div >{{activeCustomer.address}}</div>
+                            </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email:
+                                <div>{{activeCustomer.email}}</div>
+                            </label>
+                            </div>
+                        </form> -->
+
+
+                    <div class="col-12">
+                        <span class="btn btn-sm btn-primary" routerLink="/admin/settings/customers/all">Go
+                            back</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

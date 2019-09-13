@@ -1,0 +1,70 @@
+<app-admin-layout>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6"></div>
+                    <div class="col-6">
+                        <a routerLink="/admin/settings/ticket-categories/create"
+                            class="btn btn-sm btn-primary pull-right"><span class="fa fa-plus-o"></span>Add New</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                    <p>Create Ticket Category</p>
+                    <form [formGroup]="formGroup" (ngSubmit)="create()">
+                            <div class="form-group">
+                                <input type="text" formControlName="name" [(ngModel)]="model.name"
+                                  class="form-control form-control-user" placeholder="Category Name"
+                                  [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                                <div *ngIf="submitted && f.name.errors"
+                                  class="invalid-feedback text-danger text-right form-text text-muted mb-1">
+                                  <div *ngIf="f.name.errors.required">Name is required</div>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <input type="text" formControlName="description" [(ngModel)]="model.description"
+                                  class="form-control form-control-user" placeholder="Description"
+                                  [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+                                <div *ngIf="submitted && f.description.errors"
+                                  class="invalid-feedback text-danger text-right form-text text-muted mb-1">
+                                  <div *ngIf="f.description.errors.required">Description</div>
+                                </div>
+                              </div>
+                              <div class="col-12">
+                                <button class="btn btn-primary btn-sm" type="submit">Save Changes</button>
+                                <span class="btn btn-sm btn-danger" routerLink="/admin/settings/ticket-categories/all">Cancel</span>
+                              </div>          
+                          </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="inputCategoryName">Category Name</label>
+                <input type="text" class="form-control">
+            </div>
+            <div>
+                <label for="inputDescription">Description</label>
+                <textarea type="text" class="form-control" id="inputDescription"></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-dark btn-sm">Submit</button>
+                </div>
+                <div class="form-group col-md-4">
+                    <button type="button" class="btn btn-dark btn-sm">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div> -->
+
+</app-admin-layout>

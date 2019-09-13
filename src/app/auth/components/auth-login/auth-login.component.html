@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="p-5">
+        <div class="text-center">
+          <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+        </div>
+        <form [formGroup]="formGroup" (ngSubmit)="login()" class="user p-1">
+
+          <div *ngIf="showMessages.error && errors && errors.length > 0 && !submitted"
+            class="alert alert-info text-danger" role="alert">
+            <div *ngFor="let error of errors">{{ error }}</div>
+          </div>
+          <div *ngIf="showMessages.success && messages && messages.length > 0 && !submitted" class="alert alert-success"
+            role="alert">
+            <div><strong>Hooray!</strong></div>
+            <div *ngFor="let message of messages">{{ message }}</div>
+          </div>
+          <div *ngIf="service.processing_request" class="d-block text-center color-primary">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw color-primary"></i>
+            <span class="sr-only color-primary">Loading...</span>
+          </div>
+          <div class="form-group">
+            <input type="email" formControlName="username" [(ngModel)]="model.username"
+              class="form-control form-control-user" placeholder="Email"
+              [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+            <div *ngIf="submitted && f.username.errors"
+              class="invalid-feedback text-danger text-right form-text text-muted mb-1">
+              <div *ngIf="f.username.errors.required">Email is required</div>
+              <div *ngIf="f.username.errors.email">Email must be a valid email address</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="password" formControlName="password" [(ngModel)]="model.password"
+              class="form-control form-control-user" placeholder="Password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors"
+              class="invalid-feedback text-danger text-right form-text text-muted mb-1">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="custom-control custom-checkbox small">
+              <input type="checkbox" class="custom-control-input" id="customCheck">
+              <label class="custom-control-label" for="customCheck">Remember Me</label>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
+          </div>
+        </form>
+
+        <hr>
+        <div class="text-center">
+          <a class="small" routerLink="/reset-password">Forgot Password?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

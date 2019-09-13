@@ -1,0 +1,43 @@
+<app-admin-layout>
+    <div class="container">
+        <div class="card col-md-12">
+            <!-- <div class="card-header">
+                <div class="row">
+                    <div class="col-6"></div>
+                    <div class="col-6">
+                        <a routerLink="/admin/settings/tickets/create" class="btn btn-sm btn-primary pull-right"><span
+                                class="fa fa-plus-o">Add New</span></a>
+                    </div>
+                </div>
+            </div> -->
+            <div class="card-body col-md-12">
+                <table *ngIf="ticketsService.TICKETS_LIST.length" class="table table-striped w-auto">
+                    <thead>
+                        <td scope="col-md-2">ID</td>
+                        <td scope="col-md-2">Title</td>
+                        <td scope="col-md-2" >Status</td>
+                        <td  colspan="2">Actions</td>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let ticket of ticketsService.TICKETS_LIST">
+                            <tr>
+                                <td >{{ticket.id}}</td>
+                                <td ><a routerLink="/admin/settings/tickets/ticket-details/{{ticket.id}}" (click) ="ticketsService.SetActiveTicket(ticket.id);">{{ticket.title}}</a></td>
+                                <td >{{ticket.status}}</td>
+                                <td class="col">
+                                    <a class="btn btn-sm btn-primary" routerLink="/admin/settings/tickets/edit/{{ticket.id}}">
+                                        <span class="fa fa-pencil"></span>Edit</a>
+                                    <span class="btn btn-sm btn-danger"
+                                        (click)="ticketsService.confirmDeleteTicket(ticket)"><span
+                                            class="fa fa-trash"></span> Delete</span>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</app-admin-layout>

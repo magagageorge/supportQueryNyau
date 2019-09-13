@@ -1,0 +1,51 @@
+<app-admin-layout>
+    <div class="container">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-6">
+            <div class="card-header">
+                <div class="row">
+                    <div>
+                        <a routerLink="/admin/settings/customers/create" class="btn btn-sm btn-primary pull-right"><span
+                                class="fa fa-plus-o"></span>Add New</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table *ngIf="settingsService.CUSTOMERS_LIST.length" class="table table-responsive table-striped">
+                    <thead>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Contact no</td>
+                        <td colspan="2">Actions</td>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let customer of settingsService.CUSTOMERS_LIST">
+                            <tr>
+                                <td>{{customer.id}}</td>
+                                <td><a routerLink="/admin/settings/customers/customer-details/{{customer.id}}" (click) ="settingsService.SetActiveCustomer(customer.id);">{{customer.name}}</a></td>
+                                <td>{{customer.mobile}}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary"
+                                        routerLink="/admin/settings/customers/edit/{{customer.id}}"> <span
+                                            class="fa fa-pencil"></span></a>
+                                    <span class="btn btn-sm btn-danger"
+                                        (click)="settingsService.confirmDeleteCustomer(customer)"><span
+                                            class="fa fa-trash"></span> </span>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <p>second column</p>
+        </div>
+            </div>
+        </div>
+    </div>
+
+
+</app-admin-layout>
