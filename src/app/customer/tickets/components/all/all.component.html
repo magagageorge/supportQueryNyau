@@ -12,16 +12,16 @@
             </div>
             <div class="card-body col-md-12">
                 <table *ngIf="ticketsService.TICKETS_LIST.length" class="table table-responsive table-striped">
-                    <thead>
-                        <td>ID</td>
-                        <td>Title</td>
-                        <td>Status</td>
-                        <td colspan="2">Actions</td>
+                    <thead class="row">
+                        <td class="col-md-2">ID</td>
+                        <td class="col-md-2"> Title</td>
+                        <td class="col-md-2">Status</td>
+                        <td class="col-md6" colspan="2">Actions</td>
                     </thead>
                     <tbody>
                         <ng-container *ngFor="let ticket of ticketsService.TICKETS_LIST">
                             <tr>
-                                <td>{{ticket.id}}</td>
+                                <td >{{ticket.id}}</td>
                                 <td><a routerLink="/customer/tickets/ticket-details/{{ticket.id}}" (click) ="ticketsService.SetActiveTicket(ticket.id);">{{ticket.title}}</a></td>
                                 <td>{{ticket.status}}</td>
                                 <td>

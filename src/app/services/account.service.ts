@@ -1,9 +1,11 @@
 import { Injectable, Inject } from '@angular/core';
 import { CrudService, CrudProvider, CRUD_OPTIONS, CrudOptions } from '../@crud';
-import { Router } from '@angular/router';
+import { Router, GuardsCheckEnd } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { getDeepFromObject } from '../@crud/helpers';
 import { AccountModel } from '../models/account-model';
+import { AuthGuard } from './auth-guard.service';
+import { of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +24,10 @@ export class AccountService {
   modalRef : any;
   ACCOUNT_INFO:AccountModel=new AccountModel();
   main_module:string;
+  activeUser: AccountModel;
   
-  constructor(service:CrudService,@Inject(CRUD_OPTIONS) CRUD_OPTIONS:CrudOptions,private _modalService:NgbModal,router:Router,private modalService:NgbModal) { 
+  constructor(service:CrudService,@Inject(CRUD_OPTIONS) CRUD_OPTIONS:CrudOptions,private _modalService:NgbModal,router:Router,private modalService:NgbModal,
+  public AuthGuardService: AuthGuard) { 
     this.service=service;
     this.crudConfig=CRUD_OPTIONS;
     this.router=router;
@@ -40,13 +44,37 @@ export class AccountService {
       if(results.isSuccess){
         var data = results.getResultData();
         _this.ACCOUNT_INFO=data;
-        console.log(_this.ACCOUNT_INFO);        
-        if (_this.ACCOUNT_INFO.account_type.toLowerCase() != (_this.main_module).toLowerCase()) {
+        console.log(_this.ACCOUNT_INFO); 
+
+        if (_this.ACCOUNT_INFO.account_type.toLowerCase() != (_this.main_module).toLowerCase() ) {
           _this.router.navigateByUrl(_this.ACCOUNT_INFO.account_type.toLowerCase());
         }
       }
     }); 
   }
+
+  loadUserProfile(){
+    this.provider = this.getConfigValue('forms.getone.provider');
+    this.service.getProvider(this.provider).crudconfig.route_url='account/';
+
+    return this.service.getall(this.provider,{}).subscribe(results=>{
+      if(results.isSuccess){
+        var data = results.getResultData();
+        this.ACCOUNT_INFO=data;
+        console.log(this.ACCOUNT_INFO);
+      }
+    }); 
+  }
+
+  // SearchUser(id:string):Observable<AccountModel>{
+  //   return of(this.ACCOUNT_INFO.find(AccountModel=>(AccountModel.id===Number(id))));
+  // } 
+
+  // SetActiveUser(id:string){
+  //   this.SearchUser(id).subscribe(AccountModel=>{
+  //     this.activeUser=AccountModel;
+  //   });
+  //  }
 
 
   getConfigValue(key:string):any{

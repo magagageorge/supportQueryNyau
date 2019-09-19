@@ -9,6 +9,8 @@ import { DepartmentsComponent } from 'src/assets/theme/components/new/department
 import { StaffsComponent } from 'src/assets/theme/components/new/staffs/staffs.component';
 import { CustomersComponent } from 'src/assets/theme/components/new/customers/customers.component';
 import { SettingsComponent } from './settings/components/settings/settings.component';
+import { ProfileComponent } from './AdminProfile/profile/profile.component';
+import { EditProfileComponent } from './AdminProfile/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {path:'',component:DashBoardComponent},
@@ -21,7 +23,8 @@ const routes: Routes = [
   {path: 'add-new/new-department', component: DepartmentsComponent},
   {path: 'add-new/new-staff', component: StaffsComponent},
   {path: 'settings',loadChildren:'./settings/settings.module#SettingsModule'},
-
+  {path: 'profile', component: ProfileComponent},
+  {path: 'edit-profile', component: EditProfileComponent}
 
 ];
 

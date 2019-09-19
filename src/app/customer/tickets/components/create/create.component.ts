@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit {
   ticketsService: TicketsService;
   formGroup: FormGroup;
   config = {};
-  model = { id: 0, title: '', ticketNo:0 , status: 'NEW', category_id: 2, customer_id: 1 };
+  model = { id: 0, title: '', ticketNo:0 , status: 'NEW', category_id: 2, customer_id: 5 };
   messages: any[];
   errors: any[];
   crudService: CrudService;

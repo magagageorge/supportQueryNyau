@@ -9,10 +9,12 @@ import { AddNewComponent } from './add-new/add-new.component';
 import { FormsModule } from '@angular/forms';
 import { SettingsService } from './services/settings.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileComponent } from './AdminProfile/profile/profile.component';
+import { EditProfileComponent } from './AdminProfile/edit-profile/edit-profile.component';
 
 
 @NgModule({
-  declarations: [DashBoardComponent, AllTicketsComponent, AddNewComponent],
+  declarations: [DashBoardComponent, AllTicketsComponent, AddNewComponent, ProfileComponent, EditProfileComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
