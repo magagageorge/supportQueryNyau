@@ -23,6 +23,8 @@ import { TicketCategoryDeleteModalComponent } from 'src/assets/theme/modals/tick
 import { CustomerCategoryDeleteModalComponent } from 'src/assets/theme/modals/customer-category-delete-modal/customer-category-delete-modal.component';
 import { StaffRoleDeleteModalComponent } from 'src/assets/theme/modals/staff-role-delete-modal/staff-role-delete-modal.component';
 import { DepartmentDeleteModalComponent } from 'src/assets/theme/modals/department-delete-modal/department-delete-modal.component';
+import { AccountService } from './services/account.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { DepartmentDeleteModalComponent } from 'src/assets/theme/modals/departme
     FormsModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
+    HttpClientModule,
     NgbModule,
     AuthModule.forRoot({
       providers: {
@@ -66,7 +69,7 @@ import { DepartmentDeleteModalComponent } from 'src/assets/theme/modals/departme
     })
   ],
 
-  providers: [TicketService,AuthGuard],
+  providers: [TicketService,AuthGuard,AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

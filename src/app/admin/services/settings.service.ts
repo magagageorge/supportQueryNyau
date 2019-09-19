@@ -303,4 +303,5 @@ export class SettingsService {
   getConfigValue(key:string):any{
     return getDeepFromObject(this.crudConfig,key,null)
   }
+
 }

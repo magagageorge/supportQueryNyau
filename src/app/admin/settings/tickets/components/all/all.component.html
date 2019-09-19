@@ -1,21 +1,21 @@
 <app-admin-layout>
     <div class="container">
         <div class="card col-md-12">
-            <!-- <div class="card-header">
-                <div class="row">
+           <div class="card-header">
+                <!-- <div class="row">
                     <div class="col-6"></div>
                     <div class="col-6">
                         <a routerLink="/admin/settings/tickets/create" class="btn btn-sm btn-primary pull-right"><span
                                 class="fa fa-plus-o">Add New</span></a>
                     </div>
-                </div>
-            </div> -->
+                </div> -->
+            </div>
             <div class="card-body col-md-12">
-                <table *ngIf="ticketsService.TICKETS_LIST.length" class="table table-striped w-auto">
-                    <thead>
-                        <td scope="col-md-2">ID</td>
-                        <td scope="col-md-2">Title</td>
-                        <td scope="col-md-2" >Status</td>
+                <table *ngIf="ticketsService.TICKETS_LIST.length" class="table table-striped w-auto col-md-12">
+                    <thead >
+                        <td >ID</td>
+                        <td >Title</td>
+                        <td >Status</td>
                         <td  colspan="2">Actions</td>
                     </thead>
                     <tbody>

@@ -9,7 +9,7 @@ import { DetailsComponent } from './components/details/details.component';
 const routes: Routes = [
   { path: '', component: AllComponent },
   { path: 'all', component: AllComponent },
-  { path: 'create', component: CreateComponent },
+  //{ path: 'create', component: CreateComponent },
   { path: 'edit/:id', component: EditComponent },
   { path: 'details/:id', component: DetailsComponent},
   { path: 'ticket-details/:id', component: TicketDetailsComponent},

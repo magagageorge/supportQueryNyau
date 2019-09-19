@@ -4,7 +4,7 @@
       <form [formGroup]="formGroup" (ngSubmit)="edit()">
         <div class="form-group">
           <input type="text" formControlName="name" [(ngModel)]="model.name" class="form-control form-control-user"
-            placeholder="Category Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            placeholder="Department Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
           <div *ngIf="submitted && f.name.errors"
             class="invalid-feedback text-danger text-right form-text text-muted mb-1">
             <div *ngIf="f.name.errors.required">Name is required</div>
