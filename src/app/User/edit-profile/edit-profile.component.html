@@ -13,13 +13,13 @@
                         <div class="col-md-12">
                             <form>
                                 <div class="form-group row">
-                                    <label for="username" class="col-4 col-form-label">User Name*</label>
+                                    <label for="username" class="col-4 col-form-label">User Name</label>
                                     <div class="col-8">
                                         <input id="username" name="username" placeholder="Username"
                                             class="form-control here" required="required" type="text">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label for="name" class="col-4 col-form-label">First Name</label>
                                     <div class="col-8">
                                         <input id="name" name="name" placeholder="First Name" class="form-control here"
@@ -33,7 +33,7 @@
                                             class="form-control here" type="text">
                                     </div>
                                 </div>
-                                <!-- <div class="form-group row">
+                                <div class="form-group row">
                                     <label for="select" class="col-4 col-form-label"></label> 
                                     <div class="col-8">
                                       <select id="select" name="select" class="custom-select">
@@ -42,26 +42,26 @@
                                     </div>
                                   </div> -->
                                 <div class="form-group row">
-                                    <label for="email" class="col-4 col-form-label">Email*</label>
+                                    <label for="email" class="col-4 col-form-label">Email</label>
                                     <div class="col-8">
                                         <input id="email" name="email" placeholder="Email" class="form-control here"
                                             required="required" type="text">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label for="address" class="col-4 col-form-label">Address</label>
                                     <div class="col-8">
                                         <input id="address" name="address" placeholder="Address"
                                             class="form-control here" required="required" type="text">
                                     </div>
-                                </div>
-                                <div class="form-group row">
+                                </div> -->
+                                <!-- <div class="form-group row">
                                     <label for="newpass" class="col-4 col-form-label">New Password</label>
                                     <div class="col-8">
                                         <input id="newpass" name="newpass" placeholder="New Password"
                                             class="form-control here" type="text">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group row">
                                     <div class="offset-4 col-8">
                                         <button name="submit" type="submit" class="btn btn-primary">Update My
@@ -76,4 +76,33 @@
             </div>
         </div>
     </div>
+
+    
+
+    <form [formGroup]="formGroup" (ngSubmit)="edit()">
+        <div class="form-group">
+            <input type="text" formControlName="username" [(ngModel)]="model.username"
+                class="form-control form-control-user" placeholder="Username"
+                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+            <div *ngIf="submitted && f.name.errors"
+                class="invalid-feedback text-danger text-right form-text text-muted mb-1">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="email" formControlName="email" [(ngModel)]="model.email"
+                class="form-control form-control-user" placeholder="User email"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors"
+                class="invalid-feedback text-danger text-right form-text text-muted mb-1">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary btn-sm" type="submit">Save Changes</button>
+            <span class="btn btn-sm btn-danger" routerLink="/admin/profile">Cancel</span>
+        </div>
+    </form>
 </app-admin-layout>

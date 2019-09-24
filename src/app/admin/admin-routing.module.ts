@@ -9,22 +9,25 @@ import { DepartmentsComponent } from 'src/assets/theme/components/new/department
 import { StaffsComponent } from 'src/assets/theme/components/new/staffs/staffs.component';
 import { CustomersComponent } from 'src/assets/theme/components/new/customers/customers.component';
 import { SettingsComponent } from './settings/components/settings/settings.component';
-import { ProfileComponent } from './AdminProfile/profile/profile.component';
-import { EditProfileComponent } from './AdminProfile/edit-profile/edit-profile.component';
+import { ProfileComponent } from '../User/profile/profile.component';
+import { EditProfileComponent } from '../User/edit-profile/edit-profile.component';
+import { ProfileAdminComponent } from './profile/profile-admin/profile-admin.component';
 
 const routes: Routes = [
-  {path:'',component:DashBoardComponent},
-  {path: 'all-tickets', component:AllTicketsComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'all-tickets/:ticketNo', component: AllTicketsComponent},
-  {path: 'add-new', component: AddNewComponent},
-  {path: 'add-new/new-customer', component: CustomersComponent},
-  {path: 'add-new/new-customer-category', component: CustomerCategoriesComponent},
-  {path: 'add-new/new-department', component: DepartmentsComponent},
-  {path: 'add-new/new-staff', component: StaffsComponent},
-  {path: 'settings',loadChildren:'./settings/settings.module#SettingsModule'},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'edit-profile', component: EditProfileComponent}
+  { path: '', component: DashBoardComponent },
+  { path: 'all-tickets', component: AllTicketsComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'all-tickets/:ticketNo', component: AllTicketsComponent },
+  { path: 'add-new', component: AddNewComponent },
+  { path: 'add-new/new-customer', component: CustomersComponent },
+  { path: 'add-new/new-customer-category', component: CustomerCategoriesComponent },
+  { path: 'add-new/new-department', component: DepartmentsComponent },
+  { path: 'add-new/new-staff', component: StaffsComponent },
+  { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
+  { path: 'users', loadChildren: './users/users.module#UsersModule'},
+  { path: 'profile1', component: ProfileComponent },
+  { path: 'edit-profile', component: EditProfileComponent },
+  { path: 'profile', component:ProfileAdminComponent}
 
 ];
 

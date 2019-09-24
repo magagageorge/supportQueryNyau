@@ -1,15 +1,16 @@
 import { Injectable, Inject } from '@angular/core';
-import { CrudService, CRUD_OPTIONS, CrudOptions, CrudProvider } from '../@crud';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CrudService, CrudProvider, CRUD_OPTIONS, CrudOptions } from '../@crud';
 import { Router } from '@angular/router';
-import { AccountModel } from '../models/account-model';
-import { getDeepFromObject } from '../@crud/helpers';
 import { AuthGuard } from './auth-guard.service';
+import { AccountModel } from '../models/account-model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { getDeepFromObject } from '../@crud/helpers';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class ProfileService {
 
   service:CrudService;
   crudprovider:CrudProvider;
@@ -21,7 +22,10 @@ export class LoginService {
   errors:string[];
   messages:string[]; 
   authGuardService : AuthGuard;
-  USER: AccountModel = new AccountModel();
+  USER : AccountModel[] = [];
+  //USER : AccountModel = new AccountModel();
+  activeUser : AccountModel;
+  
 
   constructor(service:CrudService,@Inject(CRUD_OPTIONS) CRUD_OPTIONS:CrudOptions,private _modalService:NgbModal,router:Router,private modalService:NgbModal,
    authGuardService : AuthGuard
@@ -29,14 +33,14 @@ export class LoginService {
     this.service=service;
     this.crudConfig=CRUD_OPTIONS;
     this.router=router; 
-    this.authGuardService= authGuardService;
+    this.loadUserInfo();
   }
 
-  getUserInfo(){
-    this.provider = this.getConfigValue('forms.getone.provider');
+  loadUserInfo(){
+    this.provider = this.getConfigValue('forms.getall.provider');
     this.service.getProvider(this.provider).crudconfig.route_url='account/';
 
-    return this.service.getone(this.provider,{}).subscribe(results=>{
+    return this.service.getall(this.provider,{}).subscribe(results=>{
       if(results.isSuccess){
         var data = results.getResultData();
         this.USER=data;
@@ -45,8 +49,21 @@ export class LoginService {
     });
   }
 
+  SearchUser(id:string):Observable<AccountModel>{
+    return of(this.USER.find(AccountModel=>(AccountModel.id===Number(id))));
+  } 
+
+  SetActiveUser(id:string){
+    this.SearchUser(id).subscribe(AccountModel=>{
+      this.activeUser=AccountModel;
+    });
+   }
+
+
+
+
+
   getConfigValue(key:string):any{
     return getDeepFromObject(this.crudConfig,key,null);
   }
-
 }

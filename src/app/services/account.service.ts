@@ -53,28 +53,18 @@ export class AccountService {
     }); 
   }
 
-  loadUserProfile(){
-    this.provider = this.getConfigValue('forms.getone.provider');
-    this.service.getProvider(this.provider).crudconfig.route_url='account/';
+  // loadUserProfile(){
+  //   this.provider = this.getConfigValue('forms.getone.provider');
+  //   this.service.getProvider(this.provider).crudconfig.route_url='account/';
 
-    return this.service.getall(this.provider,{}).subscribe(results=>{
-      if(results.isSuccess){
-        var data = results.getResultData();
-        this.ACCOUNT_INFO=data;
-        console.log(this.ACCOUNT_INFO);
-      }
-    }); 
-  }
-
-  // SearchUser(id:string):Observable<AccountModel>{
-  //   return of(this.ACCOUNT_INFO.find(AccountModel=>(AccountModel.id===Number(id))));
-  // } 
-
-  // SetActiveUser(id:string){
-  //   this.SearchUser(id).subscribe(AccountModel=>{
-  //     this.activeUser=AccountModel;
-  //   });
-  //  }
+  //   return this.service.getone(this.provider,{}).subscribe(results=>{
+  //     if(results.isSuccess){
+  //       var data = results.getResultData();
+  //       this.ACCOUNT_INFO=data;
+  //       console.log(this.ACCOUNT_INFO);
+  //     }
+  //   }); 
+  // }
 
 
   getConfigValue(key:string):any{

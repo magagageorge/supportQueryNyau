@@ -16,6 +16,7 @@ import { StaffRoles } from 'src/app/models/staff-roles.model';
 import { DepartmentDeleteModalComponent } from 'src/assets/theme/modals/department-delete-modal/department-delete-modal.component';
 import { StaffDeleteModalComponent } from 'src/assets/theme/modals/staff-delete-modal/staff-delete-modal.component';
 import { StaffRoleDeleteModalComponent } from 'src/assets/theme/modals/staff-role-delete-modal/staff-role-delete-modal.component';
+import { AccountModel } from 'src/app/models/account-model';
 
 const MODALS= {
   TicketCategoryDeleteModal : TicketCategoryDeleteModalComponent,
@@ -37,12 +38,13 @@ export class SettingsService {
   DEPARTMENTS_LIST:Departments[]=[];
   STAFFS_LIST:Staff[]=[];
   STAFF_ROLES:StaffRoles[]=[];
+  USERS: AccountModel[]=[];
   service:CrudService;
   crudprovider:CrudProvider;
   protected crudConfig:{};
   protected router:Router;
   redirectDelay:number;
-  showMessages:any;
+  showMessages:any; 
   provider:string;
   errors:string[];
   messages:string[];
@@ -60,6 +62,7 @@ export class SettingsService {
     this.loadStaffsList();
     this.loadDepartmentsList();
     this.loadStaffRoles();
+    this.loadUsers();
   }
 
 
@@ -296,6 +299,45 @@ export class SettingsService {
   SearchStaffRole(id:string):Observable<StaffRoles>{
     return of(this.STAFF_ROLES.find(role=>(role.id===Number(id))));
   } 
+
+
+
+  //Users
+    //Staff Roles
+    loadUsers(){
+      this.provider = this.getConfigValue('forms.getall.provider');
+      this.service.getProvider(this.provider).crudconfig.route_url='account/';
+  
+      return this.service.getall(this.provider,{}).subscribe(results=>{
+        if(results.isSuccess){
+          var data = results.getResultData();
+          this.USERS=data;
+          console.log(this.USERS);
+        }
+      }); 
+    }
+  
+    confirmDeleteUser(user: AccountModel){
+      this.modalRef= this.modalService.open(MODALS['']);
+      this.modalRef.componentInstance.user=user;
+    }
+  
+    deleteUser(user: AccountModel){
+      var _this=this;
+      this.provider=this.getConfigValue('forms.delete.provider');
+      this.service.getProvider(this.provider).crudconfig.route_url='account/';
+      this.service.delete(this.provider,{id:user.id}).subscribe(response=>{
+         var data=response.getResultData();
+         if(data.isSuccess){
+           this.USERS=this.USERS.filter((x:any)=>x.id!==user.id);
+         }
+      });
+      this.modalRef.close();
+    }
+  
+    SearchUser(id:string):Observable<AccountModel>{
+      return of(this.USERS.find(user=>(user.id===Number(id))));
+    } 
 
 
 

@@ -1,0 +1,46 @@
+<app-admin-layout>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Users</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <a routerLink="/admin/users/create" class="btn btn-sm btn-primary pull-right"><span
+                                class="fa fa-plus-o"></span>Create New</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table *ngIf="settingsService.USERS.length" class="table table-responsive col-md-12">
+                    <thead class="row">
+                        <td class="col-md-1">ID</td>
+                        <td class="col-md-2">Name</td>
+                        <td class="col-md-3">Email</td>
+                        <td class="col-md-2">Type</td>
+                        <td class="col-md-4" colspan="2">Actions</td>
+                    </thead>
+
+                    <ng-container *ngFor="let user of settingsService.USERS">
+                        <tbody class="row">
+                            <td class="col-md-1">{{user.id}}</td>
+                            <td class="col-md-2">{{user.username}}</td>
+                            <td class="col-md-3">{{user.email}}</td>
+                            <td class="col-md-2">{{user.account_type}}</td>
+                            <td class="col-md-4">
+                                <!-- <a class="btn btn-sm btn-primary">
+                                    <span class="fa fa-pencil">Edit</span></a> -->
+                                <span class="btn btn-sm btn-danger"
+                                    (click)="settingsService.confirmDeleteUser(user)"><span
+                                        class="fa fa-trash">Delete</span> </span>
+                            </td>
+                        </tbody>
+                    </ng-container>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</app-admin-layout>
