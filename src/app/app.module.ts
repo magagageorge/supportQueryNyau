@@ -25,6 +25,7 @@ import { StaffRoleDeleteModalComponent } from 'src/assets/theme/modals/staff-rol
 import { DepartmentDeleteModalComponent } from 'src/assets/theme/modals/department-delete-modal/department-delete-modal.component';
 import { AccountService } from './services/account.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartsModule } from 'ng2-Charts';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    ChartsModule,
     NgbModule,
     AuthModule.forRoot({
       providers: {

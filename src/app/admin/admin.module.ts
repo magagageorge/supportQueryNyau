@@ -13,16 +13,20 @@ import { ProfileComponent } from '../User/profile/profile.component';
 import { AllComponent } from './Users/components/all/all.component';
 import { ProfileAdminComponent } from './profile/profile-admin/profile-admin.component';
 import { EditProfileComponent } from '../User/edit-profile/edit-profile.component';
+import { ChartsModule } from 'ng2-Charts';
+import { ChartsComponent } from './charts/charts.component';
+import { Charts1Component } from './charts1/charts1.component';
 
 
 @NgModule({
-  declarations: [DashBoardComponent, AllTicketsComponent, AddNewComponent, ProfileComponent, AllComponent, ProfileAdminComponent, EditProfileComponent ],
+  declarations: [DashBoardComponent, AllTicketsComponent, AddNewComponent, ProfileComponent, AllComponent, ProfileAdminComponent, EditProfileComponent, ChartsComponent, Charts1Component ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ThemeModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     NgbModule
   ],
   providers:[SettingsService]
